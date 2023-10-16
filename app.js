@@ -25,7 +25,12 @@ class Calculator {
   }
   addNumber(number) {
     if (number === "." && this.currentoperand.includes(".")) return;
-    this.currentoperand = this.currentoperand.toString() + number.toString();
+    if (number === "." && this.currentoperand === "") {
+      this.currentoperand = "0. "
+    } else {
+    
+      this.currentoperand = this.currentoperand.toString() + number.toString();
+    }
   }
   /**
    * pass operation using this operation= operation
@@ -43,8 +48,8 @@ class Calculator {
   }
   calculate() {
     let calculation;
-    const previous = parseInt(this.previousoperand);
-    const current = parseInt(this.currentoperand);
+    const previous = parseFloat(this.previousoperand);
+    const current = parseFloat(this.currentoperand);
     if (isNaN(previous) || isNaN(current)) return;
     switch (this.operation) {
       case "+":
